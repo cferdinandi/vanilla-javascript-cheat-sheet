@@ -50,6 +50,7 @@ A list of recommended vanilla JavaScript plugins. A bonus resource from "[The Va
 - **[extend.](https://github.com/cferdinandi/extend)** Merge two or more objects together.
 - **[getClosest.](https://github.com/cferdinandi/getClosest)** Get the closest parent element that matches a selector.
 - **[scrollStop.](https://github.com/cferdinandi/scrollStop)** Detect when someone stops scrolling.
+- **[onClickOrTap.](https://github.com/cferdinandi/onClickOrTap)** Run a callback after a click or tap, without running duplicate callbacks for the same event.
 - **[isInViewport.](https://github.com/cferdinandi/isInViewport)** Detect when an element is in the viewport.
 - **[getOffsetTop.](https://github.com/cferdinandi/getOffsetTop)** Get an element's distance from the top of the document.
 - **[getParents.](https://github.com/cferdinandi/getParents)** Get all parent elements up the DOM tree.
