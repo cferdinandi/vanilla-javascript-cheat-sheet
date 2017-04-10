@@ -7,6 +7,7 @@ A list of recommended vanilla JavaScript plugins. A bonus resource from "[The Va
 - **[Houdini.](https://github.com/cferdinandi/houdini/)** A progressively enhanced expand-and-collapse and accordion widget.
 - **[Modals.](https://github.com/cferdinandi/modals/)** Simple, mobile-friendly modal dialogue windows.
 - **[Tabby.](https://github.com/cferdinandi/tabby/)** Lightweight toggle tabs.
+- **[ScrollReveal.](https://scrollrevealjs.org/)** Easy scroll animations.
 
 
 ## Navigation
@@ -22,6 +23,7 @@ A list of recommended vanilla JavaScript plugins. A bonus resource from "[The Va
 - **[Right Height.](https://github.com/cferdinandi/right-height/)** Set variable content containers to equal height.
 - **[Sticky Footer.](https://github.com/cferdinandi/sticky-footer/)** Dynamic, responsive sticky footers.
 - **[Vanilla FitText.js.](https://github.com/adactio/FitText.js)** Create scalable headlines that fill the width of a parent element.
+- **[Rellax.](https://dixonandmoe.com/rellax/)** A lightweight parallax library.
 
 
 ## User Experience
