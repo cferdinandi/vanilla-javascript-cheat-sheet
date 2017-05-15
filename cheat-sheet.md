@@ -9,25 +9,31 @@ From "[The Vanilla JS Guidebook](https://gomakethings.com/vanilla-js-guidebook/)
 Get all matching elements.
 
 ```js
-document.querySelectorAll( selector );
+var elem = document.querySelectorAll( selector );
 ```
 
 ### querySelector()
 
-Get the first matching selector
+Get the first matching selector.
 
 ```js
-document.querySelector( selector );
+var elem = document.querySelector( selector );
 ```
 
-### getElem()
+### getElementById()
 
-A helper function to avoid throwing errors if an element isn't found with `querySelector()`.
+Get an element by its ID.
 
 ```js
-var getElem = function ( selector ) {
-	return document.querySelector( selector ) || document.createElement( '_' );
-};
+var elem = getElementById( id );
+```
+
+### getElementsByClassName()
+
+Find all elements on a page that have a specific class or classes.
+
+```js
+var elems = document.getElementsByClassName( class );
 ```
 
 ### matches()
@@ -79,73 +85,6 @@ forEach(obj, function (item, key) {
 	console.log( item ); // value
 	console.log( key ); // key
 });
-```
-
-
-## String Transforms
-
-### trim()
-
-Remove whitespace from a string.
-
-```js
-str.trim();
-```
-
-### toLowerCase()
-
-Transform all text in a string to lowercase.
-
-```js
-str.toLowerCase();
-```
-
-### toUpperCase()
-
-Transform all text in a string to uppercase.
-
-```js
-str.toUpperCase();
-```
-
-### parseInt()
-
-Convert a string into an integer (a whole number). The second argument should (generally) always be `10`.
-
-```js
-parseInt( str, 10 );
-```
-
-### parseFloat()
-
-Convert a string into a point number (a number with decimal points).
-
-```js
-parseFloat( str );
-```
-
-### replace()
-
-Replace a portion of text in a string with something else.
-
-```js
-str.replace( searchForThis, replaceWithThis );
-```
-
-### slice()
-
-Get a portion of a string starting (and optionally ending) at a particular character. The first argument is where to start. The second argument is where to end (and is optional). If either argument is a negative integer, it will start at the end of the string and work backwards.
-
-```js
-str.slice( int, int );
-```
-
-### split()
-
-Convert a string into an array by splitting it after a specific character (or characters). The first argument, the `delimiter`, the character or characters to split by. As an optional second argument, you can stop splitting your string after a certain number of delimiter matches have been found.
-
-```js
-str.split( str, delimiter );
 ```
 
 
@@ -322,6 +261,175 @@ Allow event bubbling on events (like `focus`) that don't natively support it by 
 document.addEventListener('focus', function (event) {
 	// Run functions whenever an element in the document comes into focus
 }, true);
+```
+
+## String Transforms
+
+### trim()
+
+Remove whitespace from a string.
+
+```js
+str.trim();
+```
+
+### toLowerCase()
+
+Transform all text in a string to lowercase.
+
+```js
+str.toLowerCase();
+```
+
+### toUpperCase()
+
+Transform all text in a string to uppercase.
+
+```js
+str.toUpperCase();
+```
+
+### parseInt()
+
+Convert a string into an integer (a whole number). The second argument should (generally) always be `10`.
+
+```js
+parseInt( str, 10 );
+```
+
+### parseFloat()
+
+Convert a string into a point number (a number with decimal points).
+
+```js
+parseFloat( str );
+```
+
+### replace()
+
+Replace a portion of text in a string with something else.
+
+```js
+str.replace( searchForThis, replaceWithThis );
+```
+
+### slice()
+
+Get a portion of a string starting (and optionally ending) at a particular character. The first argument is where to start. The second argument is where to end (and is optional). If either argument is a negative integer, it will start at the end of the string and work backwards.
+
+```js
+str.slice( int, int );
+```
+
+### split()
+
+Convert a string into an array by splitting it after a specific character (or characters). The first argument, the `delimiter`, the character or characters to split by. As an optional second argument, you can stop splitting your string after a certain number of delimiter matches have been found.
+
+```js
+str.split( str, delimiter );
+```
+
+
+## Merging Arrays and Objects
+
+### Add items to an array
+
+```js
+var arr = ['turkey', 'tuna', 'blt'];
+arr.push('chicken', 'pb&j');
+```
+
+### Merge two or more arrays together
+
+```js
+var arr1 = ['turkey', 'tuna', 'blt'];
+var arr2 = ['chicken', 'pb&j'];
+Array.prototype.push.apply(arr1, arr2);
+```
+
+### Add items to an object
+
+Use either the dot notation or the square bracket notation.
+
+```js
+var obj = {
+    sandwich: 'turkey',
+    chips: 'cape cod',
+    drink: 'soda'
+}
+
+// Add items to the object
+obj.alcohol = false;
+obj["dessert"] = 'cookies';
+```
+
+### Merge two or more objects together
+
+```js
+/**
+ * Merge two or more objects. Returns a new object.
+ * Set the first argument to `true` for a deep or recursive merge
+ * @param {Boolean}  deep     If true, do a deep (or recursive) merge [optional]
+ * @param {Object}   objects  The objects to merge together
+ * @returns {Object}          Merged values of defaults and options
+ */
+var extend = function () {
+
+    // Variables
+    var extended = {};
+    var deep = false;
+    var i = 0;
+    var length = arguments.length;
+
+    // Check if a deep merge
+    if ( Object.prototype.toString.call( arguments[0] ) === '[object Boolean]' ) {
+        deep = arguments[0];
+        i++;
+    }
+
+    // Merge the object into the extended object
+    var merge = function ( obj ) {
+        for ( var prop in obj ) {
+            if ( Object.prototype.hasOwnProperty.call( obj, prop ) ) {
+                // If deep merge and property is an object, merge properties
+                if ( deep && Object.prototype.toString.call(obj[prop]) === '[object Object]' ) {
+                    extended[prop] = extend( true, extended[prop], obj[prop] );
+                } else {
+                    extended[prop] = obj[prop];
+                }
+            }
+        }
+    };
+
+    // Loop through each object and conduct a merge
+    for ( ; i < length; i++ ) {
+        var obj = arguments[i];
+        merge(obj);
+    }
+
+    return extended;
+
+};
+
+// Example objects
+var object1 = {
+    apple: 0,
+    banana: { weight: 52, price: 100 },
+    cherry: 97
+};
+var object2 = {
+    banana: { price: 200 },
+    durian: 100
+};
+var object3 = {
+    apple: 'yum',
+    pie: 3.214,
+    applePie: true
+}
+
+// Usage
+var newObjectShallow = extend( object1, object2, object3 );
+var newObjectDeep = extend( true, object1, object2, object3 );
 ```
 
 
@@ -623,109 +731,6 @@ var siblings = getSiblings( elem );
 ```
 
 
-## Merging Arrays and Objects
-
-### Add items to an array
-
-```js
-var arr = ['turkey', 'tuna', 'blt'];
-arr.push('chicken', 'pb&j');
-```
-
-### Merge two or more arrays together
-
-```js
-var arr1 = ['turkey', 'tuna', 'blt'];
-var arr2 = ['chicken', 'pb&j'];
-Array.prototype.push.apply(arr1, arr2);
-```
-
-### Add items to an object
-
-Use either the dot notation or the square bracket notation.
-
-```js
-var obj = {
-    sandwich: 'turkey',
-    chips: 'cape cod',
-    drink: 'soda'
-}
-
-// Add items to the object
-obj.alcohol = false;
-obj["dessert"] = 'cookies';
-```
-
-### Merge two or more objects together
-
-```js
-/**
- * Merge two or more objects. Returns a new object.
- * Set the first argument to `true` for a deep or recursive merge
- * @param {Boolean}  deep     If true, do a deep (or recursive) merge [optional]
- * @param {Object}   objects  The objects to merge together
- * @returns {Object}          Merged values of defaults and options
- */
-var extend = function () {
-
-    // Variables
-    var extended = {};
-    var deep = false;
-    var i = 0;
-    var length = arguments.length;
-
-    // Check if a deep merge
-    if ( Object.prototype.toString.call( arguments[0] ) === '[object Boolean]' ) {
-        deep = arguments[0];
-        i++;
-    }
-
-    // Merge the object into the extended object
-    var merge = function ( obj ) {
-        for ( var prop in obj ) {
-            if ( Object.prototype.hasOwnProperty.call( obj, prop ) ) {
-                // If deep merge and property is an object, merge properties
-                if ( deep && Object.prototype.toString.call(obj[prop]) === '[object Object]' ) {
-                    extended[prop] = extend( true, extended[prop], obj[prop] );
-                } else {
-                    extended[prop] = obj[prop];
-                }
-            }
-        }
-    };
-
-    // Loop through each object and conduct a merge
-    for ( ; i < length; i++ ) {
-        var obj = arguments[i];
-        merge(obj);
-    }
-
-    return extended;
-
-};
-
-// Example objects
-var object1 = {
-    apple: 0,
-    banana: { weight: 52, price: 100 },
-    cherry: 97
-};
-var object2 = {
-    banana: { price: 200 },
-    durian: 100
-};
-var object3 = {
-    apple: 'yum',
-    pie: 3.214,
-    applePie: true
-}
-
-// Usage
-var newObjectShallow = extend( object1, object2, object3 );
-var newObjectDeep = extend( true, object1, object2, object3 );
-```
-
-
 ## The Viewport
 
 ### Get Viewport Height
@@ -823,46 +828,170 @@ var drink = getQueryString( 'drink', 'http://another-example.com?drink=soda' ); 
 ```
 
 
+## Cutting the Mustard
+
+A simple browser test determines whether or not a browser supports modern JavaScript methods and browser APIs.
+
+```js
+var supports = 'querySelector' in document && 'addEventListener' in window;
+
+if ( supports ) {
+	// Codes goes here...
+}
+
+// or...
+
+if ( !supports ) return;
+```
+
+
+## Cookies
+
+### Setting a cookie
+
+Set a cookie using a `{KEY}={VALUE};` format. Optionally, you can pass in an expiration date as a timestamp using the `expires={VALUE}` format.
+
+```js
+// Set a cookie named sandwich, with a value of turkey
+// Cookie expires on December 31, 2024 at 11:59 and 59 seconds PM
+document.cookie = 'sandwich=turkey; expires=Fri, 31 Dec 2024 23:59:59 GMT';
+```
+
+### Getting a cookie value
+
+`getCookie()`^[[https://gist.github.com/wpsmith/6cf23551dd140fb72ae7](https://gist.github.com/wpsmith/6cf23551dd140fb72ae7)] is a super lightweight helper method to make getting cookie values easier.
+
+```js
+var getCookie = function (name) {
+	var value = "; " + document.cookie;
+	var parts = value.split("; " + name + "=");
+	if (parts.length == 2) return parts.pop().split(";").shift();
+};
+
+// Example
+var cookieVal = getCookie( 'sandwich' );
+```
+
+### More complex cookies
+
+If you're doing more complex work with cookies, I would strongly recommend the simple cookie library provided by MDN.^[[https://developer.mozilla.org/en-US/docs/Web/API/Document/cookie/Simple_document.cookie_framework](https://developer.mozilla.org/en-US/docs/Web/API/Document/cookie/Simple_document.cookie_framework)]. It let's you easily set, get, and remove cookies.
+
+```javascript
+// Set a cookie
+docCookies.setItem( 'sandwich', 'turkey with tomato and mayo', new Date(2020, 5, 12) );
+
+// Get a cookie
+var cookieVal = docCookies.getItem( 'sandwich' );
+
+// Remove a coookie
+docCookies.removeItem( 'sandwich' );
+```
+
+
+## localStorage/sessionStorage
+
+### localStorage
+
+Store data locally that the browser can access later. Stored indefinitely. Stored data must be a string.
+
+```javascript
+// Store data
+var someData = 'The data that I want to store for later.';
+localStorage.setItem('myDataKey', someData);
+
+// Get data
+var data = localStorage.getItem('myDataKey');
+
+// Remove data
+localStorage.removeItem('myDatakey');
+```
+
+### sessionStorage
+
+Session storage works just like `localStorage`, except the data is cleared when the browser session ends.
+
+```javascript
+// Store data
+var someTempData = 'The data that I want to store temporarily.';
+sessionStorage.setItem('myTempDataKey', someTempData);
+
+// Get data
+var tempData = sessionStorage.getItem('myTempDataKey');
+
+// Remove data
+sessionStorage.removeItem('myTempDatakey');
+```
+
+### Storing arrays and objects
+
+While `localStorage` and `sessionStorage` can only data in string form, you can convert arrays and objects to strings (and then transform them back). This allows you to store multiple values as a single item, reducing your overall data footprint.
+
+#### Arrays
+
+For arrays, we'll use the `toString()` method to convert the array to a string, and `split()` to convert it back to an array.
+
+```javascript
+var someArray = ['turkey', 'tuna', 'pb&j'];
+
+// Save data
+localStorage.setItem('sandwiches', someArray.toString());
+
+// Get data
+var data = localStorage.getItem('sandwiches').split(',');
+```
+
+#### Objects
+
+For objects, we'll use `JSON.stringify()` to convert our object to a JSON string, and `JSON.parse` to convert it back.
+
+```javascript
+var lunch = {
+    sandwich: 'turkey',
+    chips: 'cape cod',
+    drink: 'soda'
+}
+
+// Save data
+localStorage.setItem('lunch', JSON.stringify(lunch));
+
+// Get data
+var data = JSON.parse(localStorage.getItem('lunch'));
+```
+
+
 ## Ajax/HTTP
+
+
 
 ### Standard Ajax/HTTP Requests
 
-First include [Todd Motto's Atomic library](https://github.com/toddmotto/atomic)].
-
 ```js
-// GET
-atomic.get('https://jsonplaceholder.typicode.com/posts')
-	.success(function (data, xhr) {
-		// What do when the request is successful
-		console.log(data);
-		console.log(xhr);
-	})
-	.error(function () {
-		// What do when the request fails
-		console.log( 'The request failed!' );
-	})
-	.always(function (data, xhr) {
-		// Code that should run regardless of the request status
-	});
+// Set up our HTTP request
+var xhr = new XMLHttpRequest();
 
-// POST
-atomic.post('http://jsonplaceholder.typicode.com/posts', {
-	title: 'foo',
-	body: 'bar',
-	userId: 1
-})
-	.success(function (data, xhr) {
+// Setup our listener to process compeleted requests
+xhr.onreadystatechange = function () {
+	// Only run if the request is complete
+	if ( xhr.readyState !== 4 ) return;
+
+	// Process our return data
+	if ( xhr.status === 200 ) {
 		// What do when the request is successful
-		console.log(data);
-		console.log(xhr);
-	})
-	.error(function () {
+		console.log( xhr );
+	} else {
 		// What do when the request fails
-		console.log( 'The request failed!' );
-	})
-	.always(function (data, xhr) {
-		// Code that should run regardless of the request status
-	});
+		console.log('The request failed!');
+	}
+
+	// Code that should run regardless of the request status
+	console.log('This always runs...');
+};
+
+// Create and send a GET request
+// The first argument is the post type (GET, POST, PUT, DELETE, etc.)
+// The second argument is the endpoint URL
+xhr.open( 'GET', 'https://jsonplaceholder.typicode.com/posts' );
+xhr.send();
 ```
 
 ### JSONP
@@ -898,4 +1027,194 @@ var logAPI = function ( data ) {
 }
 
 getJSONP( 'http://jsfiddle.net/echo/jsonp/?text=something&par1=another&par2=one-more', 'logAPI' );
+```
+
+### Atomic Library
+
+Atomic^[[https://github.com/cferdinandi/atomic](https://github.com/toddmotto/atomic)] is an insanely useful Ajax/HTTP micro-library originally created by Todd Motto^[[https://toddmotto.com](https://toddmotto.com)] and now managed by me. It weighs just 1.5kb minified, and makes working with Ajax/HTTP and JSONP absurdly easy.
+
+```javascript
+// After you've included Atomic with your scripts...
+
+// GET
+atomic.ajax({
+	url: 'https://jsonplaceholder.typicode.com/posts'
+})
+	.success(function (data, xhr) {
+		// What do when the request is successful
+		console.log(data);
+		console.log(xhr);
+	})
+	.error(function () {
+		// What do when the request fails
+	})
+	.always(function (data, xhr) {
+		// Code that should run regardless of the request status
+	});
+
+
+// POST
+atomic.ajax({
+	type: 'POST',
+	url: 'https://jsonplaceholder.typicode.com/posts',
+	data: {
+		title: 'foo',
+		body: 'bar',
+		userId: 1
+	}
+})
+	.success(function (data, xhr) {
+		// What do when the request is successful
+		console.log(data);
+		console.log(xhr);
+	})
+	.error(function () {
+		// What do when the request fails
+	})
+	.always(function (data, xhr) {
+		// Code that should run regardless of the request status
+	});
+
+
+// JSONP
+
+var myCallback = function (data) {
+	console.log(data);
+};
+
+atomic.ajax({
+	type: 'JSONP',
+	url: 'https://jsfiddle.net/echo/jsonp/',
+	callback: 'myCallback',
+	data: {
+		text: 'something',
+		par1: 'another',
+		par2: 'one-more',
+		bool: true
+	}
+});
+```
+
+### Getting the HTML
+
+#### Hand-Coded
+
+```javascript
+var xhr = new XMLHttpRequest();
+
+// Setup our listener to process compeleted requests
+xhr.onreadystatechange = function () {
+	// Do something...
+};
+
+// Create and send a GET request
+xhr.open( 'GET', '/page-url' );
+xhr.responseType = 'document'
+xhr.send();
+```
+
+#### With Atomic
+
+```javascript
+atomic.ajax({
+	url: '/about/',
+	responseType: 'document'
+})
+	.success(function (data, xhr) {
+		// Do something...
+	});
+```
+
+### Replacing the entire page
+
+#### Hand-Coded
+
+```javascript
+var xhr = new XMLHttpRequest();
+
+// Setup our listener to process compeleted requests
+xhr.onreadystatechange = function () {
+	// Only run if the request is complete
+	if ( xhr.readyState !== 4 ) return;
+
+	// If successful, replace the page content
+	if ( xhr.status === 200 ) {
+		document.body.innerHTML = xhr.response.body.innerHTML;
+	}
+};
+
+// Create and send a GET request
+xhr.open( 'GET', '/page-url' );
+xhr.responseType = 'document'
+xhr.send();
+```
+
+#### With Atomic
+
+```javascript
+atomic.ajax({
+	url: '/about/',
+	responseType: 'document'
+})
+	.success(function (data, xhr) {
+		document.body.innerHTML = data.body.innerHTML;
+	});
+```
+
+### Adding an element to the page
+
+#### Hand-Coded
+
+```javascript
+var xhr = new XMLHttpRequest();
+
+// Setup our listener to process compeleted requests
+xhr.onreadystatechange = function () {
+	// Only run if the request is complete
+	if ( xhr.readyState !== 4 ) return;
+
+	// If successful, replace the page content
+	if ( xhr.status === 200 ) {
+		// Get our element
+		var elem = xhr.response.querySelector('.some-selector');
+
+		// Get the element to insert it before or after
+		var target = document.querySelector('#target-location-selector');
+
+		// Insert it before the target
+		target.parentNode.insertBefore(elem, target);
+
+		// OR, insert it after the target
+		target.parentNode.insertBefore(elem, target.nextSibling);
+	}
+};
+
+// Create and send a GET request
+xhr.open( 'GET', '/page-url' );
+xhr.responseType = 'document'
+xhr.send();
+```
+
+#### With Atomic
+
+```javascript
+atomic.ajax({
+	url: '/about/',
+	responseType: 'document'
+})
+	.success(function (data, xhr) {
+		document.body.innerHTML = data.body.innerHTML;
+
+		// Get our element
+		var elem = data.querySelector('.some-selector');
+
+		// Get the element to insert it before or after
+		var target = document.querySelector('#target-location-selector');
+
+		// Insert it before the target
+		target.parentNode.insertBefore(elem, target);
+
+		// OR, insert it after the target
+		target.parentNode.insertBefore(elem, target.nextSibling);
+	});
 ```

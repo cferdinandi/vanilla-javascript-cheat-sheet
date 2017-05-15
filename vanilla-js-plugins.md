@@ -46,6 +46,13 @@ A list of recommended vanilla JavaScript plugins. A bonus resource from "[The Va
 - **[Egg.js.](http://thatmikeflynn.com/egg.js/)** Add hidden easter eggs to your site with keystroke combinations.
 
 
+## Feature Detection & Progressive Enhancement
+
+- **[features.js.](http://featurejs.com/)** A lightweight feature detection library.
+- **[loadJS.](https://github.com/filamentgroup/loadJS/)** Asynchronously load JavaScript files.
+- **[loadCSS.](https://github.com/filamentgroup/loadCSS/)** Asynchronously load CSS files.
+
+
 ## Helper Functions & Micro-Libraries
 
 - **[ready.](https://github.com/cferdinandi/ready)** Run functions after the DOM is ready.
@@ -59,4 +66,4 @@ A list of recommended vanilla JavaScript plugins. A bonus resource from "[The Va
 - **[getParentsUntil.](https://github.com/cferdinandi/getParentsUntil)** Get all parent elements up the DOM tree until a matching parent is found.
 - **[getSiblings.](https://github.com/cferdinandi/getSiblings)** Get all siblings of an element.
 - **[getQueryString.](https://github.com/cferdinandi/getQueryString)** A simple helper function for getting query string values.
-- **[atomic.](https://github.com/toddmotto/atomic)** Easily make Ajax/HTTP requests.
+- **[atomic.](https://github.com/cferdinandi/atomic)** Easily make Ajax/HTTP requests.
