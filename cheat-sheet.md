@@ -51,7 +51,7 @@ elem.matches( selector );
 
 Use `continue` to skip to the next item in the loop, and `break` to end the loop altogether.
 
-```
+```js
 for ( var i = 0; i < arr.length; i++ ) {
 	console.log(i) // index
 	console.log( arr[i] ) // value
