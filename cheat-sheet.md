@@ -523,48 +523,15 @@ Get the parent of an element.
 var parent = elem.parentNode;
 ```
 
-### getClosest()
+### closest()
 
-Get the closest parent that matches a selector.
+Get the closest parent that matches a selector. Requires a [polyfill](https://developer.mozilla.org/en-US/docs/Web/API/Element/closest#Polyfill).
 
 ```js
-/**
- * Get the closest matching element up the DOM tree.
- * @private
- * @param  {Element} elem     Starting element
- * @param  {String}  selector Selector to match against
- * @return {Boolean|Element}  Returns null if not match found
- */
-var getClosest = function ( elem, selector ) {
-
-	// Element.matches() polyfill
-	if (!Element.prototype.matches) {
-		Element.prototype.matches =
-			Element.prototype.matchesSelector ||
-			Element.prototype.mozMatchesSelector ||
-			Element.prototype.msMatchesSelector ||
-			Element.prototype.oMatchesSelector ||
-			Element.prototype.webkitMatchesSelector ||
-			function(s) {
-				var matches = (this.document || this.ownerDocument).querySelectorAll(s),
-					i = matches.length;
-				while (--i >= 0 && matches.item(i) !== this) {}
-				return i > -1;
-			};
-	}
-
-	// Get closest match
-	for ( ; elem && elem !== document; elem = elem.parentNode ) {
-		if ( elem.matches( selector ) ) return elem;
-	}
-
-	return null;
-
-};
-
-// Usage
-var closest = getClosest( elem, '.some-selector' );
+var elem = document.querySelector( '#some-elem' );
+var closestSandwich = elem.closest( '[data-sandwich]' );
 ```
+
 
 ### getParents()
 
