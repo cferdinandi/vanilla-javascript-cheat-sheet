@@ -1,5 +1,6 @@
 /**
  * Element.matches() and Element.closest() polyfills
+ * Combined because the closest() polyfill requires matches()
  * https://developer.mozilla.org/en-US/docs/Web/API/Element/matches#Polyfill
  * https://developer.mozilla.org/en-US/docs/Web/API/Element/closest#Polyfill
  */
