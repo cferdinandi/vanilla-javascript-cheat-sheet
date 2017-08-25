@@ -1,6 +1,6 @@
 # The Vanilla JS Cheat Sheet
 
-From "[The Vanilla JS Guidebook](https://gomakethings.com/vanilla-js-guidebook/)."
+Techniques, approaches, and methods for working with vanilla JavaScript.
 
 ## Selectors
 
