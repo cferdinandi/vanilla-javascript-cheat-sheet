@@ -1,6 +1,6 @@
 # Vanilla JavaScript Plugins
 
-A list of recommended vanilla JavaScript plugins. A bonus resource from "[The Vanilla JS Guidebook](http://gomakethings.com/vanilla-js-guidebook)."
+A list of recommended vanilla JavaScript plugins.
 
 ## Hide & Show Content
 
@@ -37,6 +37,7 @@ A list of recommended vanilla JavaScript plugins. A bonus resource from "[The Va
 - **[PhotoSwipe.](http://photoswipe.com/)** An amazing photo gallery plugin.
 - **[Swiper.](http://idangero.us/swiper/)** Rich touch-supported sliders.
 - **[FluidVids.](https://github.com/toddmotto/fluidvids)** Add true responsive support to your video embeds.
+- **[Media Player.](https://github.com/jonathantneal/media-player)** A tiny, totally cross browser, accessible, fully customizable media player.
 
 
 ## Touch, Gesture, and Keyboard Support
