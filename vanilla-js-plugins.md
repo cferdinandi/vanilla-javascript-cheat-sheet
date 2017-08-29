@@ -66,5 +66,6 @@ A list of recommended vanilla JavaScript plugins.
 - **[getParents.](https://github.com/cferdinandi/getParents)** Get all parent elements up the DOM tree.
 - **[getParentsUntil.](https://github.com/cferdinandi/getParentsUntil)** Get all parent elements up the DOM tree until a matching parent is found.
 - **[getSiblings.](https://github.com/cferdinandi/getSiblings)** Get all siblings of an element.
+- **[nextUntil.](https://github.com/cferdinandi/nextUntil)** Get all following siblings of each element up to but not including the element matched by the selector.
 - **[getQueryString.](https://github.com/cferdinandi/getQueryString)** A simple helper function for getting query string values.
 - **[atomic.](https://github.com/cferdinandi/atomic)** Easily make Ajax/HTTP requests.
