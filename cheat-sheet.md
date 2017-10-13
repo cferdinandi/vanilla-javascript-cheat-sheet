@@ -1,4 +1,4 @@
-# The Vanilla JS Cheat Sheet
+# Code Snippet Cheat Sheet
 
 Techniques, approaches, and methods for working with vanilla JavaScript.
 
