@@ -1,6 +1,6 @@
-# Vanilla JavaScript Tools
+# The Vanilla JavaScript Toolkit
 
-Bonus material from my [vanilla JS pocket guides](https://gomakethings.com/guides/).
+A growing collection of code snippets, boilerplates, helper functions, polyfills, and recommended vanilla JS plugins. Bonus material from my [vanilla JS pocket guides](https://gomakethings.com/guides/).
 
 1. [The Cheat Sheet](https://github.com/cferdinandi/vanilla-javascript-cheat-sheet/blob/master/cheat-sheet.md)
 2. [Boilerplates](https://github.com/cferdinandi/vanilla-javascript-cheat-sheet/tree/master/boilerplates)
