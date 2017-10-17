@@ -1,5 +1,6 @@
-/**
+/*!
  * Determine if an element is in the viewport
+ * (c) 2017 Chris Ferdinandi, MIT License, https://gomakethings.com
  * @param  {Node}    elem The element
  * @return {Boolean}      Returns true if element is in the viewport
  */
