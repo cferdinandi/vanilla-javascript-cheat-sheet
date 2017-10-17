@@ -1,27 +1,37 @@
 /**
  * ParentNode.prepend() polyfill
  */
-// Source: https://github.com/jserz/js_piece/blob/master/DOM/ParentNode/prepend()/prepend().md
-(function (arr) {
-	arr.forEach(function (item) {
-		if (item.hasOwnProperty('prepend')) {
-			return;
-		}
-		Object.defineProperty(item, 'prepend', {
-			configurable: true,
-			enumerable: true,
-			writable: true,
-			value: function prepend() {
-				var argArr = Array.prototype.slice.call(arguments),
-					docFrag = document.createDocumentFragment();
+// Source: https://github.com/Financial-Times/polyfill-service
+var _mutation = (function () {
 
-				argArr.forEach(function (argItem) {
-					var isNode = argItem instanceof Node;
-					docFrag.appendChild(isNode ? argItem : document.createTextNode(String(argItem)));
-				});
+    function isNode(object) {
+        // DOM, Level2
+        if (typeof Node === 'function') {
+            return object instanceof Node;
+        }
+        // Older browsers, check if it looks like a Node instance)
+        return object &&
+            typeof object === "object" && 
+            object.nodeName && 
+            object.nodeType >= 1 &&
+            object.nodeType <= 12;
+    }
 
-				this.insertBefore(docFrag, this.firstChild);
-			}
-		});
-	});
-})([Element.prototype, Document.prototype, DocumentFragment.prototype]);
+    // http://dom.spec.whatwg.org/#mutation-method-macro
+    return function mutation(nodes) {
+        if (nodes.length === 1) {
+            return isNode(nodes[0]) ? nodes[0] : document.createTextNode(nodes[0] + '');
+        }
+
+        var fragment = document.createDocumentFragment();
+        for (var i = 0; i < nodes.length; i++) {
+            fragment.appendChild(isNode(nodes[i]) ? nodes[i] : document.createTextNode(nodes[i] + ''));
+
+        }
+        return fragment;
+    };
+}());
+
+Document.prototype.prepend = Element.prototype.prepend = function prepend() {
+    this.insertBefore(_mutation(arguments), this.firstChild);
+};
