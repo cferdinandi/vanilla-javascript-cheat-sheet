@@ -1,5 +1,6 @@
-/**
+/*!
  * Check if two objects or arrays are equal
+ * (c) 2017 Chris Ferdinandi and Go Make Things, MIT License, https://gomakethings.com
  * @param  {Object|Array}  value  The first object or array to compare
  * @param  {Object|Array}  other  The second object or array to compare
  * @return {Boolean}              Returns true if they're equal
