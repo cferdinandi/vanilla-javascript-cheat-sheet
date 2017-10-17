@@ -1,6 +1,7 @@
-/**
+/*!
  * Run event after DOM is ready
-  * @param  {Function} fn Callback function
+ * (c) 2017 Chris Ferdinandi and Go Make Things, MIT License, https://gomakethings.com
+ * @param  {Function} fn Callback function
  */
 var ready = function (fn) {
 
