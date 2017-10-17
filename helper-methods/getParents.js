@@ -1,5 +1,6 @@
-/**
+/*!
  * Get all of an element's parent elements up the DOM tree
+ * (c) 2017 Chris Ferdinandi and Go Make Things, MIT License, https://gomakethings.com
  * @param  {Node}   elem     The element
  * @param  {String} selector Selector to match against [optional]
  * @return {Array}           The parent elements
