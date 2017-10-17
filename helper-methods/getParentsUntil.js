@@ -1,6 +1,6 @@
 /*!
  * Get all of an element's parent elements up the DOM tree until a matching parent is found
- * (c) 2017 Chris Ferdinandi and Go Make Things, MIT License, https://gomakethings.com
+ * (c) 2017 Chris Ferdinandi, MIT License, https://gomakethings.com
  * @param  {Node}   elem     The element
  * @param  {String} parent   The selector for the parent to stop at
  * @param  {String} selector The selector to filter against [optionals]
