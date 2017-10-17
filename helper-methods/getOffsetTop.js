@@ -1,6 +1,6 @@
-/**
+/*!
  * Get an element's distance from the top of the Document.
- * @private
+ * (c) 2017 Chris Ferdinandi, MIT License, https://gomakethings.com
  * @param  {Node} elem The element
  * @return {Number}    Distance from the top in pixels
  */
