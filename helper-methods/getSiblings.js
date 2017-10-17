@@ -1,5 +1,6 @@
-/**
+/*!
  * Get all siblings of an element
+ * (c) 2017 Chris Ferdinandi, MIT License, https://gomakethings.com
  * @param  {Node}  elem The element
  * @return {Array}      The siblings
  */
