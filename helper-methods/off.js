@@ -1,4 +1,4 @@
-/**
+/*!
  * Remove an event listener
  * (c) 2017 Chris Ferdinandi, MIT License, https://gomakethings.com
  * @param  {String}   event    The event type
