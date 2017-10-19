@@ -5,7 +5,7 @@
  * @param   {Object}   objects  The objects to merge together
  * @returns {Object}            Merged values of defaults and options
  */
-extend = function () {
+var extend = function () {
 
 	// Variables
 	var extended = {};
