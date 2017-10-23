@@ -40,9 +40,7 @@ If you want your plugin to work with RequireJS, Node, or Browserify, you should 
 
 This wrapper for your plugin provides support for AMD and CommonJS modules, as well as global variables (like you would use with a revealing module pattern).
 
-Change `myPlugin` to whatever namespace you’d like to use for your plugin.
-
-***Note:*** *When using this pattern, use `window` becomes `root` in your code. For ease, I've created a `window` variable that maps to the `root` element.*
+Change `root.myPlugin` to whatever namespace you’d like to use for your plugin (ex. `root.Accordion`).
 
 ```js
 // Examples
@@ -51,6 +49,23 @@ myPlugin.init();
 
 // Example with options
 myPlugin.init({
+    mayo: true,
+    bread: 'rye',
+});
+```
+
+
+## Constructors
+
+If you want to be able to run multiple instances of your plugin at the same time, use a constructor with your *revealing module pattern* or *UMD*.
+
+```js
+// Examples
+var plugin = myPlugin('.selector');
+plugin.doSomething();
+
+// Example with options
+var plugin = myPlugin('.selector', {
     mayo: true,
     bread: 'rye',
 });
