@@ -6,7 +6,7 @@ Methods, browser APIs, and techniques for working with vanilla JavaScript. Unles
 
 ## Selectors
 
-### querySelectorAll()
+### `querySelectorAll()`
 
 Get all matching elements on a page. You can use any valid CSS selector.
 
@@ -18,7 +18,7 @@ var elemsRed = document.querySelectorAll('.bg-red');
 var elemsSnacks = document.querySelectorAll('[data-snack]');
 ```
 
-### querySelector()
+### `querySelector()`
 
 Get the first matching element on a page.
 
@@ -33,7 +33,7 @@ var elemRed = document.querySelector('.bg-red');
 var elemCarrots = document.querySelector('[data-snack="carrots"]');
 ```
 
-### getElementById()
+### `getElementById()`
 
 Get an element by its ID.
 
@@ -43,7 +43,7 @@ var elem = getElementById('some-selector');
 
 **Works back to at least IE6.**
 
-### getElementsByClassName()
+### `getElementsByClassName()`
 
 Get all elements on a page that have a specific class or classes. Returns a live HTMLCollection of elements.
 
@@ -55,7 +55,7 @@ var elemsByClass = document.getElementsByClassName('some-class');
 var elemsWithMultipleClasses = document.getElementsByClassName('some-class another-class');
 ```
 
-### getElementsByTagName()
+### `getElementsByTagName()`
 
 Get all elements that have a specific tag name.
 
